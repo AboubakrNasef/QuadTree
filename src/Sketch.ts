@@ -12,24 +12,41 @@ export const sketch = (p: p5) => {
   let drawVisitor = new DrawingVisitor(p);
   p.setup = () => {
     p.createCanvas(500, 500);
-    for (let index = 0; index < 500; index++) {
-      let p = new Point(Math.random() * 490, Math.random() * 490);
-      console.log(p);
-      qt.Insert(p);
-    }
-
-    console.log(qt);
-  };
-
-  p.draw = () => {
-    p.background(0);
+    p.frameRate(60);
     p.ellipseMode("center");
     p.noFill();
-
-    qt.Accept(drawVisitor);
-    p.strokeWeight(1);
-    p.ellipse(p.mouseX, p.mouseY, 50, 50);
+    for (let index = 0; index < 1000; index++) {
+      let p = new Point(Math.random() * 490, Math.random() * 490);
+      //console.log(p);
+      qt.Insert(p);
+    }
   };
 
-  console.log(qt);
+  p.mousePressed = () => {
+    let point = new Point(p.mouseX, p.mouseY);
+    qt.Insert(point);
+  };
+  p.draw = () => {
+    p.background(0);
+    qt.Accept(drawVisitor);
+    let points: Point[] = [];
+    let range = new Rectangle(p.mouseX, p.mouseY, 50, 50);
+    p.stroke(0, 255, 0);
+    p.rectMode("center");
+    const start = new Date().getMilliseconds();
+
+    qt.Query(range, points);
+
+    let elapsed = new Date().getMilliseconds() - start;
+    console.log(elapsed);
+
+    for (const point of points) {
+      p.strokeWeight(5);
+      p.point(point.X, point.Y);
+    }
+    p.strokeWeight(2);
+    p.rect(p.mouseX, p.mouseY, 50, 50);
+  };
+
+  // console.log(qt);
 };

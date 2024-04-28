@@ -36,6 +36,7 @@ export class QuadTree implements IShape {
       if (this.SouthWest.Insert(point)) {
         return true;
       }
+      return false;
     }
   }
 
@@ -71,6 +72,27 @@ export class QuadTree implements IShape {
     this.SouthWest = new QuadTree(swBound, this.Capacity);
 
     this.divided = true;
+  }
+
+  Query(range: Rectangle, found: Point[]): void {
+    if (!this.Boundary.Intersects(range)) {
+      return;
+    } else {
+      for (let p of this.Points) {
+        if (range.Contains(p)) {
+          found.push(p);
+        }
+      }
+
+      if (this.divided) {
+        this.NorthEast.Query(range, found);
+        this.NorthWest.Query(range, found);
+        this.SouthEast.Query(range, found);
+        this.SouthWest.Query(range, found);
+      }
+
+      return;
+    }
   }
 
   Accept(visitor: IVisitor): boolean {
