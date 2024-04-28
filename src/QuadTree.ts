@@ -1,6 +1,6 @@
 import { Point } from "./Point";
 import { Rectangle } from "./Rectangle";
-import { IShape, IVisitor } from "./Interfaces";
+import { IShape, IVisitor } from "./Visitors/Interfaces";
 
 export class QuadTree implements IShape {
   public Points: Point[] = [];

@@ -5,18 +5,18 @@ import { Rectangle } from "./Rectangle";
 import { Point } from "./Point";
 import { DrawingVisitor } from "./Visitors/DrawingVisitor";
 
-let boundary = new Rectangle(250, 250, 500, 500);
+let boundary = new Rectangle(400, 400, 800, 800);
 let qt = new QuadTree(boundary, 4);
 
 export const sketch = (p: p5) => {
   let drawVisitor = new DrawingVisitor(p);
   p.setup = () => {
-    p.createCanvas(500, 500);
+    p.createCanvas(800, 800);
     p.frameRate(60);
     p.ellipseMode("center");
     p.noFill();
     for (let index = 0; index < 1000; index++) {
-      let p = new Point(Math.random() * 490, Math.random() * 490);
+      let p = new Point(Math.random() * 790, Math.random() * 790);
       //console.log(p);
       qt.Insert(p);
     }

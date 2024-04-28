@@ -1,4 +1,4 @@
-import { IShape, IVisitor } from "./Interfaces";
+import { IShape, IVisitor } from "./Visitors/Interfaces";
 import { Point } from "./Point";
 
 export class Rectangle implements IShape {

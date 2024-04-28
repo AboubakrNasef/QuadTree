@@ -1,4 +1,4 @@
-import { IShape, IVisitor } from "./Interfaces";
+import { IShape, IVisitor } from "./Visitors/Interfaces";
 
 export class Point implements IShape {
   constructor(public X: number, public Y: number) {}

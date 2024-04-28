@@ -1,5 +1,5 @@
 import p5 from "p5";
-import { IVisitor } from "../Interfaces";
+import { IVisitor } from "./Interfaces";
 import { Point } from "../Point";
 import { QuadTree } from "../QuadTree";
 import { Rectangle } from "../Rectangle";

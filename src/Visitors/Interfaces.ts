@@ -1,6 +1,6 @@
-import { Point } from "./Point";
-import { QuadTree } from "./QuadTree";
-import { Rectangle } from "./Rectangle";
+import { Point } from "../Point";
+import { QuadTree } from "../QuadTree";
+import { Rectangle } from "../Rectangle";
 
 interface IVisitable {
   Accept(visitor: IVisitor): boolean;
